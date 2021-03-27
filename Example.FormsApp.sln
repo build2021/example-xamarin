@@ -5,7 +5,19 @@ VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.FormsApp.Android", "Example.FormsApp\Example.FormsApp.Android\Example.FormsApp.Android.csproj", "{E7B459D4-411A-45E8-896E-7A819179532E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.FormsApp", "Example.FormsApp\Example.FormsApp\Example.FormsApp.csproj", "{740CCFD9-1E08-4F0F-AAA1-508D3BBE9178}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.FormsApp", "Example.FormsApp\Example.FormsApp\Example.FormsApp.csproj", "{740CCFD9-1E08-4F0F-AAA1-508D3BBE9178}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2FAB5111-E159-4A74-9FC2-BAB2511C95DD}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		Example.FormsApp.sln.DotSettings = Example.FormsApp.sln.DotSettings
+		Example.ruleset = Example.ruleset
+		README.md = README.md
+		Settings.XamlStyler = Settings.XamlStyler
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

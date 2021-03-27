@@ -23,14 +23,6 @@
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <UseShortFileNames>True</UseShortFileNames>
-    <AndroidEnablePreloadAssemblies>True</AndroidEnablePreloadAssemblies>
-    <CodeAnalysisRuleSet>..\..\Example.ruleset</CodeAnalysisRuleSet>
-    <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>example.keystore</AndroidSigningKeyStore>
-    <AndroidSigningStorePass>example</AndroidSigningStorePass>
-    <AndroidSigningKeyAlias>example</AndroidSigningKeyAlias>
-    <AndroidSigningKeyPass>example</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,7 +33,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <MandroidI18n>CJK</MandroidI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,9 +43,6 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <MandroidI18n>CJK</MandroidI18n>
-    <AotAssemblies>true</AotAssemblies>
-    <EnableLLVM>true</EnableLLVM>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -66,26 +54,8 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs">
-      <Version>7.1.0.483</Version>
-    </PackageReference>
-    <PackageReference Include="Rg.Plugins.Popup">
-      <Version>2.0.0.11</Version>
-    </PackageReference>
-    <PackageReference Include="Usa.Smart.Core">
-      <Version>1.8.8</Version>
-    </PackageReference>
-    <PackageReference Include="Usa.Smart.Resolver">
-      <Version>1.10.1</Version>
-    </PackageReference>
-    <PackageReference Include="Usa.Smart.Resolver.Xamarin">
-      <Version>1.10.1</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
-    <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>5.0.0.2012</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
