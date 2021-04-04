@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sr="clr-namespace:Smart.Forms.Resolver;assembly=Smart.Forms"
              xmlns:shell="clr-namespace:Example.FormsApp.Shell;assembly=Example.FormsApp"
-             xmlns:markup="clr-namespace:Example.FormsApp.Markup;assembly=Example.FormsApp"
              xmlns:modules="clr-namespace:Example.FormsApp.Modules.Main;assembly=Example.FormsApp"
              x:Class="Example.FormsApp.Modules.Main.MenuView"
              x:DataType="{x:Type modules:MenuViewModel}"

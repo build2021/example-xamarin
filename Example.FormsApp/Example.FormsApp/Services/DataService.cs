@@ -1,12 +1,17 @@
 namespace Example.FormsApp.Services
 {
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
+
+    using Example.FormsApp.Helpers;
+    using Example.FormsApp.Models.Entity;
 
     using Microsoft.Data.Sqlite;
 
     using Smart.Data;
     using Smart.Data.Mapper;
+    using Smart.Data.Mapper.Builders;
 
     public class DataServiceOptions
     {
@@ -45,10 +50,80 @@ namespace Example.FormsApp.Services
             await provider.UsingAsync(async con =>
             {
                 await con.ExecuteAsync("PRAGMA AUTO_VACUUM=1");
-                // TODO
+                await con.ExecuteAsync(SqlHelper.MakeCreate<DataEntity>());
+                await con.ExecuteAsync(SqlHelper.MakeCreate<BulkDataEntity>());
             });
-
-            // TODO ?
         }
+
+        // CRUD
+
+        public async ValueTask<bool> InsertDataAsync(DataEntity entity)
+        {
+            return await provider.UsingAsync(async con =>
+            {
+                try
+                {
+                    await con.ExecuteAsync(
+                        SqlInsert<DataEntity>.Values(),
+                        entity);
+
+                    return true;
+                }
+                catch (SqliteException e)
+                {
+                    if (e.SqliteErrorCode == SQLitePCL.raw.SQLITE_CONSTRAINT)
+                    {
+                        return false;
+                    }
+                    throw;
+                }
+            });
+        }
+
+        public ValueTask<int> UpdateDataAsync(long id, string name) =>
+            provider.UsingAsync(con =>
+                con.ExecuteAsync(
+                    SqlUpdate<DataEntity>.Set("Name = @Name", "Id = @Id"),
+                    new { Id = id, Name = name }));
+
+        public ValueTask<int> DeleteDataAsync(long id) =>
+            provider.UsingAsync(con =>
+                con.ExecuteAsync(
+                    SqlDelete<DataEntity>.ByKey(),
+                    new { Id = id }));
+
+        public ValueTask<DataEntity> QueryDataAsync(long id) =>
+            provider.UsingAsync(con =>
+                con.QueryFirstOrDefaultAsync<DataEntity>(
+                    SqlSelect<DataEntity>.ByKey(),
+                    new { Id = id }));
+
+        // Bulk
+
+        public ValueTask<int> CountBulkDataAsync() =>
+            provider.UsingAsync(con =>
+                con.ExecuteScalarAsync<int>(
+                    SqlCount<BulkDataEntity>.All()));
+
+        public void InsertBulkDataEnumerable(IEnumerable<BulkDataEntity> source)
+        {
+            provider.UsingTx((con, tx) =>
+            {
+                foreach (var entity in source)
+                {
+                    con.Execute(SqlInsert<BulkDataEntity>.Values(), entity, tx);
+                }
+
+                tx.Commit();
+            });
+        }
+
+        public ValueTask<int> DeleteAllBulkDataAsync() =>
+            provider.UsingAsync(con => con.ExecuteAsync("DELETE FROM BulkData"));
+
+        public List<BulkDataEntity> QueryAllBulkDataList() =>
+            provider.Using(con =>
+                con.QueryList<BulkDataEntity>(
+                    SqlSelect<BulkDataEntity>.All()));
     }
 }

@@ -13,6 +13,7 @@ namespace Example.FormsApp
     using Example.FormsApp.Modules;
     using Example.FormsApp.Services;
     using Example.FormsApp.State;
+    using Example.FormsApp.Usecase;
 
     using Rester;
 
@@ -22,7 +23,9 @@ namespace Example.FormsApp
     using Smart.Resolver;
 
     using Xamarin.Essentials;
+
     using XamarinFormsComponents;
+    using XamarinFormsComponents.Popup;
 
     public partial class App
     {
@@ -65,6 +68,10 @@ namespace Example.FormsApp
                     $"Navigated: [{args.Context.FromId}]->[{args.Context.ToId}] : stacked=[{navigator.StackedCount}]");
             };
 
+            // Popup Navigator
+            var popupNavigator = resolver.Get<IPopupNavigator>();
+            popupNavigator.AutoRegister(Assembly.GetExecutingAssembly().ExportedTypes);
+
             // Show MainWindow
             MainPage = resolver.Get<MainPage>();
         }
@@ -105,7 +112,9 @@ namespace Example.FormsApp
             config.BindSingleton<DataService>();
             config.BindSingleton<NetworkService>();
 
-            // TODO Usecase
+            config.BindSingleton<NetworkOperator>();
+
+            config.BindSingleton<SampleUsecase>();
 
             provider.RegisterComponents(config);
 

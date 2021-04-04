@@ -7,7 +7,7 @@ namespace Example.FormsApp.Modules
     using Smart.Forms.ViewModels;
     using Smart.Navigation;
 
-    public class AppViewModelBase : ViewModelBase, INavigatorAware, INavigationEventSupport, INotifySupportAsync<ShellEvent>, INotifySupportAsync<string>
+    public class AppViewModelBase : ViewModelBase, INavigatorAware, INavigationEventSupport, INotifySupportAsync<ShellEvent>
     {
         public INavigator Navigator { get; set; }
 
@@ -47,21 +47,6 @@ namespace Example.FormsApp.Modules
                 default:
                     return Task.CompletedTask;
             }
-        }
-
-        public async Task NavigatorNotifyAsync(string parameter)
-        {
-            if (BusyState.IsBusy)
-            {
-                return;
-            }
-
-            await BusyState.UsingAsync(async () => await OnScan(parameter));
-        }
-
-        protected virtual Task OnScan(string input)
-        {
-            return Task.CompletedTask;
         }
 
         protected virtual Task OnNotifyBackAsync()

@@ -90,6 +90,8 @@
   <ItemGroup>
     <Compile Include="Components\Device\DeviceManager.cs" />
     <Compile Include="Components\Dialog\ApplicationDialog.cs" />
+    <Compile Include="Effects\BorderPlatformEffect.cs" />
+    <Compile Include="Effects\Effects.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

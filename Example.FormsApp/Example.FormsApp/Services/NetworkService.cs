@@ -5,7 +5,7 @@ namespace Example.FormsApp.Services
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
-
+    using Example.FormsApp.Models.Api;
     using Rester;
 
     public sealed class NetworkService : IDisposable
@@ -57,5 +57,14 @@ namespace Example.FormsApp.Services
         //--------------------------------------------------------------------------------
         // TODO
         //--------------------------------------------------------------------------------
+
+        public async ValueTask<IRestResponse<PingRequest>> PostPingAsync()
+        {
+            // TODO
+            return await client.PostAsync<PingRequest>(
+                "api/ping",
+                new PingRequest(),
+                headers);
+        }
     }
 }
